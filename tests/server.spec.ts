@@ -1,9 +1,9 @@
-// import 'mocha';
-// import {expect} from 'chai';
-// import {index} from '../src/server';
+import 'mocha';
+import {expect} from 'chai';
+import {index} from '../src/server';
 
-// describe('', () => {
-//   it('', () => {
-//     expect(index()).to.be.eql('index');
-//   });
-// });
+describe('', () => {
+  it('', () => {
+    expect(index()).to.be.eql('index');
+  });
+});
