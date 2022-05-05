@@ -1,13 +1,24 @@
 import * as net from 'net';
 import {spawn} from 'child_process';
 
+/**
+ * server create
+ * @param allowHalfOpen if set to true, socket does not auctomatically
+ * end the writable side
+ */
 net.createServer({allowHalfOpen: true}, (connection) => {
   console.log('A client has connected.');
 
+  /**
+   * Client disconnect
+   */
   connection.on('close', () => {
     console.log('A client has disconnected');
   });
 
+  /**
+   * Received data
+   */
   connection.on('data', (data) => {
     const JSONdata = JSON.parse(data.toString());
 
