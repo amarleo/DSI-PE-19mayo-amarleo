@@ -22,6 +22,9 @@ net.createServer({allowHalfOpen: true}, (connection) => {
   connection.on('data', (data) => {
     const JSONdata = JSON.parse(data.toString());
 
+    /**
+     * command spawn
+     */
     const clientCommand = spawn(JSONdata.command, JSONdata.args);
 
     if (JSONdata.args.length === 0) {
@@ -31,14 +34,26 @@ net.createServer({allowHalfOpen: true}, (connection) => {
           `Command ${JSONdata.command}` +
           ` with arguments ${JSONdata.args} exectuted`);
     }
+
     let clientCommandOutput: string = '';
     clientCommand.stdout.on('data', (piece) => clientCommandOutput += piece);
 
+    /**
+     * command error
+     */
     clientCommand.on('error', (err) => {
       console.error(`${err}`);
       connection.write('ERROR: wrong command');
     });
 
+    clientCommand.stderr.on('data', (err) => {
+      console.error(`${err}`);
+      connection.write(`${err}`);
+    });
+
+    /**
+     * commmand close
+     */
     clientCommand.on('close', () => {
       connection.write(clientCommandOutput);
       connection.end();
