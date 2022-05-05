@@ -12,7 +12,7 @@ const wholeCommand: commandType = {
   args: args,
 };
 
-const client = net.connect({port: 60300});
+export const client = net.connect({port: 60300});
 
 client.write(JSON.stringify(wholeCommand));
 
