@@ -19,5 +19,4 @@ client.write(JSON.stringify(wholeCommand));
 client.on('data', (dataJSON) => {
   const message = dataJSON.toString();
   console.log(message);
-  client.end();
 });

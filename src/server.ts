@@ -23,8 +23,14 @@ net.createServer({allowHalfOpen: true}, (connection) => {
     let clientCommandOutput: string = '';
     clientCommand.stdout.on('data', (piece) => clientCommandOutput += piece);
 
+    clientCommand.on('error', (err) => {
+      console.error(`${err}`);
+      connection.write('ERROR: wrong command');
+    });
+
     clientCommand.on('close', () => {
       connection.write(clientCommandOutput);
+      connection.end();
     });
   });
 }).listen(60300, () => {
