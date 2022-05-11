@@ -1,9 +1,25 @@
 import * as express from 'express';
+import {join} from 'path';
 
 const app = express();
 
-app.get('', (_, res) => {
-  res.send('Hello World!');
+app.use(express.static(join(__dirname, '../public')));
+
+app.get('/notes', (_, res) => {
+  res.send({
+    notes: [
+      {
+        title: 'Blue note',
+        body: 'This is a blue note',
+        color: 'blue',
+      },
+      {
+        title: 'Yellow note',
+        body: 'This is a yellow note',
+        color: 'yellow',
+      },
+    ],
+  });
 });
 
 app.listen(3000, () => {
