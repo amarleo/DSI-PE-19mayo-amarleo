@@ -5,7 +5,7 @@
     "./dist"
   ],
   "files": [
-    "src/index.ts",
+    "src/cmd.ts",
     "src/app.ts"
   ],
   "compilerOptions": {

@@ -1,33 +1,39 @@
 import * as express from 'express';
 import {join} from 'path';
-import {readNote} from './notes';
+import {cmdExecute} from './cmd';
 
 const app = express();
 
 app.use(express.static(join(__dirname, '../public')));
 
-app.get('/notes', (req, res) => {
-  if (!req.query.title) {
+// http://localhost:3000/execmd/?cmd=ls&args[]=-a&args[]=-l
+
+app.get('/execmd', (req, res) => {
+  if (!req.query.cmd) {
     res.send({
-      error: 'A title has to be provided',
+      error: 'A command has to be provided',
     });
   } else {
-    readNote(req.query.title as string, (err, data) => {
-      if (err) {
-        res.send({
-          error: err,
-        });
-      } else if (!data!.success) {
-        res.send({
-          error: `No note was found`,
-        });
-      } else {
-        res.send({
-          notes: data!.notes,
-        });
-      }
-    });
+    if (!req.query.args) {
+      cmdExecute(req.query.cmd as string, req.query.args as string)
+          .then((result) => {
+            res.send(result);
+          }).catch((error) => {
+            res.send(error);
+          });
+    } else {
+      cmdExecute(req.query.cmd as string, req.query.args as string)
+          .then((result) => {
+            res.send(result);
+          }).catch((error) => {
+            res.send(error);
+          });
+    }
   }
+});
+
+app.get('*', (_, res) => {
+  res.send('<h1>404</h1>');
 });
 
 app.listen(3000, () => {
