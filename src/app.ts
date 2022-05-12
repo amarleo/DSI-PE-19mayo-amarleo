@@ -27,9 +27,9 @@ app.get('/execmd', (req, res) => {
           //   output: result,
           // };
           // const obj: JSONdata = JSON.parse(jsonData.toString());
-          res.send(result);
+          res.send({'output': result});
         }).catch((error) => {
-          res.send(error);
+          res.send({'error': error.message});
         });
   }
 });
