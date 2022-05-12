@@ -1,5 +1,11 @@
 import {spawn} from 'child_process';
 
+/**
+ * function that return a promise by executing the commands
+ * @param cmd command to execute
+ * @param args args to execute
+ * @returns a promise
+ */
 export const cmdExecute = (cmd: string, args: string = '') => {
   let argsArray: string[] = args.split(' ');
   if (args === '') {
