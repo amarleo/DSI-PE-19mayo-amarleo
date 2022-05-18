@@ -1,5 +1,5 @@
 {
-  "name": "DSI-PE-12mayo-amarleo",
+  "name": "DSI-PE-19mayo-amarleo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amarleo/DSI-PE-12mayo-amarleo.git"
+    "url": "git+https://github.com/amarleo/DSI-PE-19mayo-amarleo.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/amarleo/DSI-PE-12mayo-amarleo/issues"
+    "url": "https://github.com/amarleo/DSI-PE-19mayo-amarleo/issues"
   },
-  "homepage": "https://github.com/amarleo/DSI-PE-12mayo-amarleo#readme",
+  "homepage": "https://github.com/amarleo/DSI-PE-19mayo-amarleo#readme",
   "devDependencies": {
     "@types/chai": "^4.3.1",
     "@types/express": "^4.17.13",
